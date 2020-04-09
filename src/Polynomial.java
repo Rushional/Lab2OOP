@@ -20,9 +20,12 @@ public class Polynomial {
     public static ComplexNumber[] calculateRoots(Polynomial polynomial) {
         var roots = new ComplexNumber[2];
 //        I could use ComplexNumber static divide(ComplexNumber a, ComplexNumber b) here, but I divide only once,
-//        and the divisor is real, so I never really use Complex division, no point to implement it, it's simpler to change this class for now
+//        and the divisor is real, so I never really use Complex division, no point to implement it,
+//        it's simpler to change this class for now instead of using weird code and only change Number
 //        If i was using c++ and typedef and all that stuff, it'd make more sense I guess, but I don't want to deal with c++
-        var discriminant = new ComplexNumber(pow(polynomial.b.realPart, 2) - 4 * polynomial.a.realPart * polynomial.c.realPart, 0);
+//        So that's partly why I add a little bit of changes to the class
+        var discriminant = new ComplexNumber(pow(polynomial.b.realPart, 2) -
+                4 * polynomial.a.realPart * polynomial.c.realPart, 0);
         if (discriminant.realPart < 0) {
             roots[0] = new ComplexNumber((-polynomial.b.realPart) / (2 * polynomial.a.realPart),
                     sqrt(-discriminant.realPart) / 2 * polynomial.a.realPart);
